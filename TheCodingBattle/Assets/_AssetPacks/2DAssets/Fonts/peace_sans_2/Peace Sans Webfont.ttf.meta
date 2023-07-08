@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: cedcd603092d8c241a04bd06649e1999
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Peace Sans
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 563c63baa2e9d864fadb73fb38fc2573, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
