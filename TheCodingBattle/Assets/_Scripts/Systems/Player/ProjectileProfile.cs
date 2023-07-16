@@ -5,10 +5,10 @@ namespace _Scripts.Systems.Player
 {
     public class ProjectileProfile : MonoBehaviour
     {
-        [SerializeField] private int power, movePower;
+        [SerializeField] private float power, movePower;
         [SerializeField] private Rigidbody rb;
 
-        public void SetPower(int newPow)
+        public void SetPower(float newPow)
         {
             power = newPow;
         }

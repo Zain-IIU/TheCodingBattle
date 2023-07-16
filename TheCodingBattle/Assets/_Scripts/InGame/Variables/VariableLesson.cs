@@ -42,14 +42,15 @@ namespace _Scripts.InGame.Variables
 
         private void IntegerLesson()
         {
-            if (SwipeDetect.swipeUp)
-                playerSystem.AddPower(true);
-            else if (SwipeDetect.swipeDown)
-                playerSystem.AddPower(false);
+           playerSystem.SetMovement();
         }
 
         private void FloatLesson()
         {
+            if (SwipeDetect.swipeUp)
+                playerSystem.AddPower(true);
+            else if (SwipeDetect.swipeDown)
+                playerSystem.AddPower(false);
         }
 
         private void BooleanLesson()

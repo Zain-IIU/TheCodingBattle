@@ -1,3 +1,4 @@
+using System.Globalization;
 using _Scripts.CustomClass;
 using DG.Tweening;
 using TMPro;
@@ -10,14 +11,17 @@ namespace _Scripts.Systems.Player
         [SerializeField] protected Animator playerAnim;
         [SerializeField] private ProjectileProfile projectilePrefab;
         [SerializeField] private Transform spawnPos;
-        [SerializeField] private int throwPower, incrementingValue, addingOffset, minPower, maxPower;
+
+        [SerializeField]
+        private float throwPower, incrementingValue, addingOffset, minPower, maxPower, maxIncrementingValue;
+
         [SerializeField] private TextMeshProUGUI curIncrementingValText, curPowerTxt;
         private static readonly int Attack = Animator.StringToHash("Attack");
 
         private void Start()
         {
-            curIncrementingValText.text = incrementingValue.ToString();
-            curPowerTxt.text = throwPower.ToString();
+            curIncrementingValText.text = incrementingValue.ToString(CultureInfo.InvariantCulture);
+            curPowerTxt.text = throwPower.ToString(CultureInfo.InvariantCulture);
         }
 
         public override void ThrowProjectile()
@@ -36,8 +40,8 @@ namespace _Scripts.Systems.Player
             if (toIncrement)
             {
                 incrementingValue += addingOffset;
-                if (incrementingValue > 10)
-                    incrementingValue = 10;
+                if (incrementingValue > maxIncrementingValue)
+                    incrementingValue = maxIncrementingValue;
             }
             else
             {
@@ -46,7 +50,7 @@ namespace _Scripts.Systems.Player
                     incrementingValue = 0;
             }
 
-            curIncrementingValText.text = incrementingValue.ToString();
+            curIncrementingValText.text = incrementingValue.ToString(CultureInfo.InvariantCulture);
         }
 
         public override void AddPower(bool val)
@@ -64,7 +68,7 @@ namespace _Scripts.Systems.Player
                     throwPower = minPower;
             }
 
-            curPowerTxt.text = throwPower.ToString();
+            curPowerTxt.text = throwPower.ToString(CultureInfo.InvariantCulture);
         }
     }
 }

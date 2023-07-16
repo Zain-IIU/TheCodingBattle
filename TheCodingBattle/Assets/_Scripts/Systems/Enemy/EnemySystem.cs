@@ -5,7 +5,7 @@ namespace _Scripts.Systems.Enemy
     public class EnemySystem : MonoBehaviour
     {
         [SerializeField] private Animator enemyAnim;
-        [SerializeField] private int totalHealth, curHealth;
+        [SerializeField] private float totalHealth, curHealth;
         private static readonly int Die = Animator.StringToHash("Die");
 
         private void Start()
@@ -13,7 +13,7 @@ namespace _Scripts.Systems.Enemy
             curHealth = totalHealth;
         }
 
-        public void DecreaseHealth(int amount)
+        public void DecreaseHealth(float amount)
         {
             curHealth -= amount;
             if (curHealth <= 0)

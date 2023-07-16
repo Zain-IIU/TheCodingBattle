@@ -1,5 +1,6 @@
 ﻿using _Scripts.CustomClass;
 using _Scripts.Helpers;
+using _Scripts.Managers;
 using _Scripts.Profiles;
 using UnityEngine;
 
@@ -79,7 +80,17 @@ namespace _Scripts.Systems.Player
         {
             if (other.TryGetComponent(out DoorSystem doorSystem))
             {
-                doorSystem.OpenTheGate();
+                if (doorSystem.GetDoorType() == DoorSystem.DoorType.TriggerBased)
+                    doorSystem.OpenTheGate();
+            }
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.CompareTag("Key"))
+            {
+                other.gameObject.SetActive(false);
+                EventsManager.KeyPickedEvent();
             }
         }
 
@@ -87,7 +98,8 @@ namespace _Scripts.Systems.Player
         {
             if (other.TryGetComponent(out DoorSystem doorSystem))
             {
-                doorSystem.CloseTheGate();
+                if (doorSystem.GetDoorType() == DoorSystem.DoorType.TriggerBased)
+                    doorSystem.CloseTheGate();
             }
         }
     }
