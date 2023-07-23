@@ -3,7 +3,7 @@ using _Scripts.CustomClass;
 using _Scripts.Helpers;
 using UnityEngine;
 
-namespace _Scripts.InGame.Variables
+namespace _Scripts.InGame.Lessons
 {
     public class VariableLesson : MonoBehaviour
     {
