@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using System;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
@@ -17,31 +18,66 @@ namespace _Scripts.Managers
         [SerializeField] private TextMeshProUGUI switchingText;
         [SerializeField] private Transform bridgePivot;
         [SerializeField] private float openPos, closePos;
-        [SerializeField] private bool isOpen;
+        [SerializeField] private bool isOpen,isKeyBased;
 
+        private bool _gotKey;
         private void Start()
         {
             switchingText.text = "OPEN";
         }
-
+        
         public void SetStateOfSystem()
         {
-            isOpen = !isOpen;
-            if (isOpen)
+            if(!isKeyBased)
             {
-                bridgePivot.DOLocalMoveY(openPos, .5f).SetEase(Ease.InSine);
-                switchingText.text = "CLOSE";
+                isOpen = !isOpen;
+                if (isOpen)
+                {
+                    bridgePivot.DOLocalMoveY(openPos, .5f).SetEase(Ease.InSine);
+                    switchingText.text = "CLOSE";
+                }
+                else
+                {
+                    bridgePivot.DOLocalMoveY(closePos, .5f).SetEase(Ease.InSine);
+                    switchingText.text = "OPEN";
+                }
             }
             else
             {
-                bridgePivot.DOLocalMoveY(closePos, .5f).SetEase(Ease.InSine);
-                switchingText.text = "OPEN";
+                if(!_gotKey) return;
+                isOpen = !isOpen;
+                if (isOpen && _gotKey)
+                {
+                    bridgePivot.DOLocalMoveY(openPos, .5f).SetEase(Ease.InSine);
+                    switchingText.text = "CLOSE";
+                }
+                else
+                {
+                    bridgePivot.DOLocalMoveY(closePos, .5f).SetEase(Ease.InSine);
+                    switchingText.text = "OPEN";
+                }
             }
         }
 
         public void SetBtnState(bool val)
         {
             switchingBtn.SetActive(val);
+        }
+
+        private void OnEnable()
+        {
+            EventsManager.OnKeyPicked += SetKeyToActive;
+        }
+
+        private void OnDisable()
+        {
+            EventsManager.OnKeyPicked -= SetKeyToActive;   
+        }
+
+        private void SetKeyToActive()
+        {
+            if (isKeyBased)
+                _gotKey = true;
         }
     }
 }

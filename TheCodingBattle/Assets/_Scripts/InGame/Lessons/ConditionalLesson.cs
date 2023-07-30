@@ -51,10 +51,7 @@ namespace _Scripts.InGame.Lessons
 
         private void IfElseLesson()
         {
-            if (SwipeDetect.swipeUp)
-                playerSystem.AddPower(true);
-            else if (SwipeDetect.swipeDown)
-                playerSystem.AddPower(false);
+           playerSystem.SetMovement();
         }
 
         private void IfElseComboLesson()
