@@ -92,6 +92,13 @@ namespace _Scripts.Systems.Player
                 other.gameObject.SetActive(false);
                 EventsManager.KeyPickedEvent();
             }
+
+            if (other.gameObject.CompareTag("End"))
+            {
+                other.enabled = false;
+                print("level completed");
+                EventsManager.LevelCompleteEvent();
+            }
         }
 
         private void OnTriggerExit(Collider other)

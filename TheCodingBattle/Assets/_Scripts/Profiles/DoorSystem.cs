@@ -48,12 +48,16 @@ namespace _Scripts.Profiles
         {
             lockPivot.DOLocalMoveY(lockPivotOpen, .25f);
             doorPivot.DOLocalMoveY(openPos, .5f);
+            if(doorType==DoorType.TriggerBased)
+                WorldUIManager.Instance.SetDetailsText("Boolean Trigger = true");
         }
 
         public void CloseTheGate()
         {
             lockPivot.DOLocalMoveY(lookPivotNormal, .25f);
             doorPivot.DOLocalMoveY(lockPos, .5f);
+            if(doorType==DoorType.TriggerBased)
+                WorldUIManager.Instance.SetDetailsText("Boolean Trigger = false");
         }
 
         public DoorType GetDoorType() => doorType;

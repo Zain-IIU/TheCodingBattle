@@ -23,6 +23,7 @@ namespace _Scripts.Systems.Player
         {
             if (other.TryGetComponent(out EnemySystem enemySystem))
             {
+                print(power);
                 enemySystem.DecreaseHealth(power);
                 gameObject.SetActive(false);
             }

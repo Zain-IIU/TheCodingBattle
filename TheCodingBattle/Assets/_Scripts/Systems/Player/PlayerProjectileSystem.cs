@@ -21,7 +21,7 @@ namespace _Scripts.Systems.Player
         private void Start()
         {
             curIncrementingValText.text = incrementingValue.ToString(CultureInfo.InvariantCulture);
-            curPowerTxt.text = throwPower.ToString(CultureInfo.InvariantCulture);
+            curPowerTxt.text = "Throw Power \n" + throwPower;
         }
 
         public override void ThrowProjectile()
@@ -68,7 +68,7 @@ namespace _Scripts.Systems.Player
                     throwPower = minPower;
             }
 
-            curPowerTxt.text = throwPower.ToString(CultureInfo.InvariantCulture);
+            curPowerTxt.text = "Throw Power \n" + throwPower;
         }
     }
 }

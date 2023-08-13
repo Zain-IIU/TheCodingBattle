@@ -1,6 +1,7 @@
 using System;
 using _Scripts.CustomClass;
 using _Scripts.Helpers;
+using _Scripts.Managers;
 using UnityEngine;
 
 namespace _Scripts.InGame.Lessons
@@ -16,6 +17,26 @@ namespace _Scripts.InGame.Lessons
 
         [SerializeField] private VariableType variableType;
         [SerializeField] private PlayerSystemBase playerSystem;
+
+        private int _keysPicked;
+
+        private void Start()
+        {
+            switch (variableType)
+            {
+                case VariableType.Integer:
+                    WorldUIManager.Instance.SetDetailsText("Integer a= "+_keysPicked);
+                    break;
+                case VariableType.FloatingPoint:
+                    break;
+                case VariableType.Boolean:
+                    WorldUIManager.Instance.SetDetailsText("Boolean Trigger = false");
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+           
+        }
 
         private void Update()
         {
@@ -56,6 +77,22 @@ namespace _Scripts.InGame.Lessons
         private void BooleanLesson()
         {
             playerSystem.SetMovement();
+        }
+
+        private void OnEnable()
+        {
+            EventsManager.OnKeyPicked += SetTextInDetailsUI;
+        }
+
+        private void OnDisable()
+        {
+            EventsManager.OnKeyPicked -= SetTextInDetailsUI;
+        }
+
+        private void SetTextInDetailsUI()
+        {
+            _keysPicked++;
+            WorldUIManager.Instance.SetDetailsText("Integer a= "+_keysPicked);
         }
     }
 }

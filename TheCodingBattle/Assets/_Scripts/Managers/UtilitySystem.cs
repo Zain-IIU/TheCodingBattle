@@ -17,6 +17,7 @@ namespace _Scripts.Managers
         [SerializeField] private GameObject switchingBtn;
         [SerializeField] private TextMeshProUGUI switchingText;
         [SerializeField] private Transform bridgePivot;
+        [SerializeField] private GameObject invisibleCol;
         [SerializeField] private float openPos, closePos;
         [SerializeField] private bool isOpen,isKeyBased;
 
@@ -24,6 +25,7 @@ namespace _Scripts.Managers
         private void Start()
         {
             switchingText.text = "OPEN";
+            invisibleCol.SetActive(true);
         }
         
         public void SetStateOfSystem()
@@ -41,6 +43,7 @@ namespace _Scripts.Managers
                     bridgePivot.DOLocalMoveY(closePos, .5f).SetEase(Ease.InSine);
                     switchingText.text = "OPEN";
                 }
+                invisibleCol.SetActive(!isOpen);
             }
             else
             {
@@ -56,6 +59,7 @@ namespace _Scripts.Managers
                     bridgePivot.DOLocalMoveY(closePos, .5f).SetEase(Ease.InSine);
                     switchingText.text = "OPEN";
                 }
+                invisibleCol.SetActive(!isOpen);
             }
         }
 
