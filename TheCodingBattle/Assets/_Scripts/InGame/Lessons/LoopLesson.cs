@@ -14,19 +14,11 @@ namespace _Scripts.InGame.Lessons
         [SerializeField] private MoveAction[] allActions;
         [SerializeField] private Transform playerTransforms, frameParent;
         [SerializeField] private Animator playerAnim;
+        [SerializeField] private Collider playerCol;
         [SerializeField] private ActionPreview previewPrefab;
         [SerializeField] private float moveOffset, moveDelay;
         private bool _isMoving, _actionsWorking;
         private static readonly int Move = Animator.StringToHash("Move");
-
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                if (_actionsWorking) return;
-                ExecuteAllActions();
-            }
-        }
 
         private void ExecuteAllActions()
         {
@@ -36,6 +28,7 @@ namespace _Scripts.InGame.Lessons
         private IEnumerator Action_CO()
         {
             _actionsWorking = true;
+            playerCol.enabled = false;
             for (var i = 0; i < actions.Count; i++)
             {
                 switch (actions[i].actionType)
@@ -88,6 +81,7 @@ namespace _Scripts.InGame.Lessons
 
             actions.Clear();
             _actionsWorking = false;
+            playerCol.enabled = true;
         }
 
         private void MoveLeft()
@@ -156,9 +150,9 @@ namespace _Scripts.InGame.Lessons
 
         public void AddActionInToList(MoveAction action)
         {
-            if(action.totalActions<=0) return;
+            if (action.curCounter <= 0) return;
             actions.Add(action);
-            action.totalActions--;
+            action.curCounter--;
             action.SetText();
             var preview = Instantiate(previewPrefab, frameParent, true);
             preview.SetText(action.actionType.ToString());
@@ -174,11 +168,16 @@ namespace _Scripts.InGame.Lessons
         {
             foreach (var allAction in allActions)
             {
-                allAction.gameObject.SetActive(true);
+                allAction.ResetCounter();
             }
 
+            if (frameParent.childCount > 0)
+                for (var i = 0; i < frameParent.childCount; i++)
+                    frameParent.GetChild(i).gameObject.SetActive(false);
+
+
             playerAnim.SetBool(Move, false);
-            _actionsWorking = false;
+            _actionsWorking =_isMoving= false;
             DOTween.Kill(playerTransforms);
             StopAllCoroutines();
             actions.Clear();
