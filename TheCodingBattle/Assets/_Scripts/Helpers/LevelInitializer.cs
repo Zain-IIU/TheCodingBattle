@@ -5,6 +5,7 @@ namespace _Scripts.Helpers
 {
     public class LevelInitializer : MonoBehaviour
     {
+        [SerializeField] private bool isSplashScreen;
         [SerializeField] public  int mainLevelIndex=2;
         private  int CurrentLevel => PlayerPrefs.GetInt("CurrentLevel", mainLevelIndex);
 
@@ -15,6 +16,11 @@ namespace _Scripts.Helpers
 
         private void LoadLevel()
         {
+            if (isSplashScreen)
+            {
+                SceneManager.LoadScene(1);
+                return;
+            }
             var sceneToLoad = GetLevelIndex();
             if (sceneToLoad <= mainLevelIndex)
                 sceneToLoad = mainLevelIndex+1;
