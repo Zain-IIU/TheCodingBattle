@@ -11,10 +11,11 @@ namespace _Scripts.Helpers
 
         private void Start()
         {
-            Invoke(nameof(LoadLevel),2f);
+            if(isSplashScreen)
+                Invoke(nameof(LoadLevel),2f);
         }
 
-        private void LoadLevel()
+        public void LoadLevel()
         {
             if (isSplashScreen)
             {

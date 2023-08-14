@@ -11,4 +11,25 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/1-MainLevel.unity
     guid: cc1ba67c755997f4394b4932f3233d79
+  - enabled: 1
+    path: Assets/Scenes/ChaptersScenes/0-Variables/0-Variables-Integers.unity
+    guid: b5f9cf35df2be714198111d1ebc39d4a
+  - enabled: 1
+    path: Assets/Scenes/ChaptersScenes/0-Variables/1-Variables-Floating.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/ChaptersScenes/0-Variables/2-Variables-Boolean.unity
+    guid: 63ff0417651da7d44b22b00a7a0a77c7
+  - enabled: 1
+    path: Assets/Scenes/ChaptersScenes/1-Conditionals/0-Conditional-IF.unity
+    guid: b0160ed6fc990274d93ac2df79a7e715
+  - enabled: 1
+    path: Assets/Scenes/ChaptersScenes/1-Conditionals/1-Conditional-IF_ELSE.unity
+    guid: 506a9c058554e164a97aee4007da891f
+  - enabled: 1
+    path: Assets/Scenes/ChaptersScenes/2-Functions/0-Functions-Basic.unity
+    guid: 6dd022d0e9cbb9548aaaf078bd712e82
+  - enabled: 1
+    path: Assets/Scenes/ChaptersScenes/3-Loops/0-Loops-Basic.unity
+    guid: 975b215d6b6b46f428ad4cf1b4ccbb29
   m_configObjects: {}
