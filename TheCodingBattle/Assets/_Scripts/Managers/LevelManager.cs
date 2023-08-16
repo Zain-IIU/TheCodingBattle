@@ -13,8 +13,17 @@ namespace _Scripts.Managers
         public void LoadNextLevel()
         {
             var currScene = SceneManager.GetActiveScene().buildIndex;
-            currScene++;
-            PlayerPrefs.SetInt("CurrentLevel", currScene);
+           
+            var key = PlayerPrefs.GetInt("CurrentLevel");
+            var sceneIncremented = false;
+            if (key<=currScene)
+            {
+                currScene++;
+                PlayerPrefs.SetInt("CurrentLevel", currScene);
+                sceneIncremented = true;
+            }
+            if(!sceneIncremented)
+                currScene++;    
             if (currScene >= SceneManager.sceneCountInBuildSettings)
             {
                 currScene = mainLevelIndex;
@@ -22,15 +31,15 @@ namespace _Scripts.Managers
 
             if (currScene >= 5 && currScene < 7)
             {
-                PlayerPrefs.SetInt("Unlocked" + LessonCard.LessonType.Conditional, 1);
+                PlayerPrefs.SetInt("Unlocked" + LessonType.Conditional, 1);
             } 
             if (currScene ==7)
             {
-                PlayerPrefs.SetInt("Unlocked" + LessonCard.LessonType.Function, 1);
+                PlayerPrefs.SetInt("Unlocked" + LessonType.Function, 1);
             } 
             if (currScene ==8)
             {
-                PlayerPrefs.SetInt("Unlocked" + LessonCard.LessonType.Loop, 1);
+                PlayerPrefs.SetInt("Unlocked" + LessonType.Loop, 1);
             }
             SceneManager.LoadScene(currScene);
         }

@@ -3,16 +3,8 @@ using UnityEngine.UI;
 
 namespace _Scripts.Helpers
 {
-    public class LessonCard : MonoBehaviour
+    public  class LessonCard : MonoBehaviour
     {
-        public enum LessonType
-        {
-            Variable,
-            Conditional,
-            Function,
-            Loop
-        }
-
         [SerializeField] private LessonType lessonType;
         [SerializeField] private bool isUnlockedByDefault;
         [SerializeField] private Button buttonHolder;

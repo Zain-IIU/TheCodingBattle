@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace _Scripts.Helpers
@@ -33,6 +34,32 @@ namespace _Scripts.Helpers
             SceneManager.LoadScene(sceneToLoad);
         }
 
+        public void LoadNextLevelOf(int type)
+        {
+            var sceneToLoad = GetLevelIndex();
+            if (sceneToLoad <= mainLevelIndex)
+                sceneToLoad = mainLevelIndex+1;
+            switch (type)
+            {
+                case 0:
+                    if (sceneToLoad > 4)
+                        sceneToLoad = 2;
+                    break;
+                case 1:
+                    if (sceneToLoad > 6)
+                        sceneToLoad = 5;
+                    break;
+                case 2:
+                    if (sceneToLoad > 7)
+                        sceneToLoad = 7;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
+            }
+            
+            
+            SceneManager.LoadScene(sceneToLoad);
+        }
         private  int GetLevelIndex()
         {
             return CurrentLevel % SceneManager.sceneCountInBuildSettings;
